@@ -1,18 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor.SceneManagement;
 
-public class MainMenuCanva : MonoBehaviour
+namespace ProjectGriffor
 {
-    // public MusicManager mMusicManager
-
-    public void PlayGame()
+    public class MainMenuCanva : MonoBehaviour
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Game");
-    }
+        public void PlayGame()
+        {
+            SceneLoader.OpenScene("Game");
+        }
 
-    public void ExitGame()
-    {
-        Application.Quit();
+        public void ExitGame()
+        {
+            Application.Quit();
+        }
     }
 }
