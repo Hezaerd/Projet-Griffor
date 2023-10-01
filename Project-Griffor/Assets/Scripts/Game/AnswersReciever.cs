@@ -1,13 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 
 namespace ProjectGriffor
 {
     public class AnswersReciever : MonoBehaviour
     {
-        [SerializeField] private int answersNumber;
+        private GameObject[] buttons;
 
         private void OnEnable()
         {
@@ -18,9 +15,20 @@ namespace ProjectGriffor
         {
             Question currQuestion = Singleton.instance.questionsManager.questions[Singleton.instance.questionsManager.currQuestionIndex];
 
-            answersNumber = currQuestion.answers.Length;
+            int answersNumber = currQuestion.answers.Length;
+            InstantiateButtons(answersNumber);
 
             Debug.Log($"The current question {currQuestion} have {answersNumber} answers");
+        }
+
+        private void InstantiateButtons(int answersNumber)
+        {
+            for (int i = 0; i < answersNumber; i++)
+            {
+                GameObject button = Instantiate(Singleton.instance.questionsManager.buttonPrefab, Singleton.instance.questionsManager.buttonParent.transform);
+                button.name = $"Button {i}";
+                button.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = Singleton.instance.questionsManager.questions[Singleton.instance.questionsManager.currQuestionIndex].answers[i].answer;
+            }
         }
     }
 }

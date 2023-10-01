@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 namespace ProjectGriffor
 {
@@ -12,6 +13,11 @@ namespace ProjectGriffor
 
         [Space, Tooltip("List of all questions")]
         public Question[] questions;
+
+        [Space, Tooltip("Instances for buttons")]
+        public GameObject buttonPrefab;
+
+        public GameObject buttonParent;
 
         #region EVENTS
 
@@ -27,6 +33,11 @@ namespace ProjectGriffor
 
         # endregion EVENTS
 
+        private void OnEnable()
+        {
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+
         private void Awake()
         {
             QuestionsLoader.LoadQuestions();
@@ -38,6 +49,14 @@ namespace ProjectGriffor
         {
             currQuestionIndex++;
             onQuestionChanged?.Invoke();
+        }
+
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            if (scene.name == "Game")
+            {
+                buttonParent = GameObject.Find("Buttons Holder");
+            }
         }
     }
 }

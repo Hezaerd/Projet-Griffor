@@ -1487,8 +1487,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6779b71381ee7414f88f97d01d629cff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentQuestionIndex: 0
+  currQuestionIndex: -1
   questions: []
+  buttonPrefab: {fileID: 2763175706113133611, guid: 4935cc7acb4683e48bc5fb7bf82f98c6, type: 3}
   onQuestionChanged:
     m_PersistentCalls:
       m_Calls: []
