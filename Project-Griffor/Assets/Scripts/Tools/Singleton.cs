@@ -7,7 +7,7 @@ namespace ProjectGriffor
     {
         public static Singleton instance { get; private set; }
 
-        public StatsTracker gameManager { get; private set; }
+        public StatsTracker statsTracker { get; private set; }
         public QuestionsManager questionsManager { get; private set; }
 
         private void Awake()
@@ -36,8 +36,8 @@ namespace ProjectGriffor
                 return false;
             }
 
-            gameManager = GetComponentInChildren<StatsTracker>();
-            if (gameManager)
+            statsTracker = GetComponentInChildren<StatsTracker>();
+            if (statsTracker)
                 Debug.Log($"<color=#f7ba00>gameManager successfully loaded</color>");
             else
             {
